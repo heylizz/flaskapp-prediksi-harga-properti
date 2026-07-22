@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediksi Harga Properti Yogyakarta</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="topbar">
+    <div class="wrap" style="padding:0;">
+        <h1>Prediksi Harga Properti di Daerah Istimewa Yogyakarta</h1>
+    </div>
+</div>
+
+<div class="wrap">
+    {% if is_synthetic %}
+    <div class="warn-msg">
+        ⚠️ Model pada demo ini dilatih dengan <b>data sintetis</b> (bukan dataset rumah123 asli),
+        supaya aplikasi tetap bisa langsung dijalankan. Untuk hasil yang identik dengan laporan
+        penelitian, taruh dataset asli di <code>data/rumah123_yogya_unfiltered.csv</code> lalu
+        jalankan ulang <code>python train_model.py</code>. Tabel "Hasil Evaluasi Model (Laporan)"
+        di bawah tetap menampilkan angka asli dari penelitian.
+    </div>
+    {% endif %}
+
+    <div class="grid">
+        <div class="col">
+            <div class="card">
+                <h2>Input Data Properti</h2>
+                <p class="desc">Masukkan spesifikasi properti untuk memprediksi estimasi harga jual.</p>
+
+                {% if error %}<div class="error-msg">{{ error }}</div>{% endif %}
+
+                <form method="POST">
+                    <div class="form-group">
+                        <label>Kota / Kabupaten</label>
+                        <select name="kota" required>
+                            <option value="" disabled {{ 'selected' if not form_values.kota else '' }}>Pilih kota</option>
+                            {% for k in kota_list %}
+                            <option value="{{ k }}" {{ 'selected' if form_values.kota == k else '' }}>{{ k }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Luas Tanah (m²)</label>
+                            <input type="number" step="1" min="1" name="luas_tanah" value="{{ form_values.luas_tanah }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Luas Bangunan (m²)</label>
+                            <input type="number" step="1" min="1" name="luas_bangunan" value="{{ form_values.luas_bangunan }}" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Kamar Tidur</label>
+                            <input type="number" step="1" min="0" name="kamar_tidur" value="{{ form_values.kamar_tidur }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Kamar Mandi</label>
+                            <input type="number" step="1" min="0" name="kamar_mandi" value="{{ form_values.kamar_mandi }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Garasi</label>
+                            <input type="number" step="1" min="0" name="garasi" value="{{ form_values.garasi }}" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn">Prediksi Harga</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <h2>Hasil Prediksi</h2>
+                <p class="desc">Model aktif: <b>{{ best_model_name }}</b></p>
+
+                {% if hasil %}
+                <div class="result-box">
+                    <div class="label">Estimasi Harga Properti</div>
+                    <div class="amount">{{ hasil.harga_rupiah }}</div>
+                    <div class="sub">≈ Rp {{ hasil.harga_miliar }} Miliar</div>
+                </div>
+                <div class="result-detail">
+                    <table>
+                        <tr><td>Kota</td><td>{{ hasil.input.kota }}</td></tr>
+                        <tr><td>Luas Tanah</td><td>{{ hasil.input.luas_tanah }} m²</td></tr>
+                        <tr><td>Luas Bangunan</td><td>{{ hasil.input.luas_bangunan }} m²</td></tr>
+                        <tr><td>Kamar Tidur</td><td>{{ hasil.input.kamar_tidur }}</td></tr>
+                        <tr><td>Kamar Mandi</td><td>{{ hasil.input.kamar_mandi }}</td></tr>
+                        <tr><td>Garasi</td><td>{{ hasil.input.garasi }}</td></tr>
+                    </table>
+                </div>
+                {% else %}
+                <div class="placeholder-box">Isi form di sebelah kiri lalu klik "Prediksi Harga" untuk melihat estimasi.</div>
+                {% endif %}
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

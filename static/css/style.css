@@ -1,0 +1,218 @@
+/* =======================================================
+   Prediksi Harga Properti DIY — palet terinspirasi joglo & batik Jogja
+   Warna: soga coklat (#7A4A2B), indigo tua (#22344F), gading (#F3ECDD)
+   ======================================================= */
+
+:root {
+  --bg: #F3ECDD;
+  --panel: #FFFFFF;
+  --ink: #24211B;
+  --ink-soft: #6B6355;
+  --line: #E1D6BE;
+  --indigo: #22344F;
+  --soga: #7A4A2B;
+  --soga-light: #C98A55;
+  --gold: #B8892B;
+  --ok-bg: #22344F;
+  --radius: 4px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Segoe UI", "Trebuchet MS", "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.topbar {
+  background: var(--indigo);
+  border-bottom: 3px solid var(--gold);
+  padding: 28px 0;
+}
+
+.topbar h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 0.3px;
+  color: #F3ECDD;
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 0 24px;
+}
+
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 32px 24px 56px;
+}
+
+.warn-msg {
+  background: #FBF1DC;
+  border: 1px solid var(--gold);
+  border-left: 4px solid var(--gold);
+  color: #5C4A1E;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-size: 13.5px;
+  margin-bottom: 24px;
+}
+.warn-msg code {
+  background: rgba(0,0,0,0.06);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 12.5px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 800px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px 28px 30px;
+  box-shadow: 0 1px 2px rgba(36,33,27,0.04);
+}
+
+.card h2 {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  margin: 0 0 4px;
+  color: var(--indigo);
+  border-bottom: 2px solid var(--line);
+  padding-bottom: 10px;
+}
+
+.desc {
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  margin: 10px 0 20px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.form-row .form-group { margin-bottom: 16px; }
+
+label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+select, input[type="number"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #FDFBF6;
+  font-size: 14.5px;
+  color: var(--ink);
+}
+select:focus, input:focus {
+  outline: none;
+  border-color: var(--soga-light);
+  box-shadow: 0 0 0 3px rgba(201,138,85,0.18);
+}
+
+.btn {
+  width: 100%;
+  margin-top: 6px;
+  padding: 13px 16px;
+  background: var(--soga);
+  color: #FFF9EE;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.btn:hover { background: #5F3A21; }
+
+.error-msg {
+  background: #FBE9E7;
+  border-left: 4px solid #B3392C;
+  color: #7A241A;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  font-size: 13.5px;
+  margin-bottom: 16px;
+}
+
+.result-box {
+  background: var(--ok-bg);
+  border-radius: var(--radius);
+  padding: 24px 22px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+.result-box .label {
+  color: #C7CEDB;
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+.result-box .amount {
+  color: #FFFFFF;
+  font-family: Georgia, serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.result-box .sub {
+  color: var(--gold);
+  font-size: 13.5px;
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.result-detail table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.result-detail td {
+  padding: 9px 4px;
+  border-bottom: 1px solid var(--line);
+}
+.result-detail td:first-child {
+  color: var(--ink-soft);
+  width: 45%;
+}
+.result-detail td:last-child {
+  font-weight: 600;
+  text-align: right;
+}
+
+.placeholder-box {
+  border: 1.5px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 13.5px;
+}
